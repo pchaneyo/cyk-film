@@ -1,0 +1,328 @@
+<?xml-model href="https://www.cyklang.net/schema/cyklang.xsd"?>
+<module description="film module">
+
+  <module_object name="actor_select" module="actor_select"/>
+
+  <!--
+    constructor __init__
+  -->
+
+  <function name="__init__">
+    <block>
+      <!-- setMenu-->
+      <setmenu>
+        <object>
+          <!-- title;icon;caption;path -->
+          <string literal="">Films;movie;film table management;/run/film</string>
+          <string literal="">Actors;person;actor table management;/run/film/actor</string>
+        </object>
+      </setmenu>
+
+    </block>
+  </function>
+
+  <!--
+    function select_film displays a list of films to choose from
+    returns
+      selected.row : record film chosen
+      selected.command : command to execute new/delete/exit(program)
+  -->
+
+  <function name="query_film" returns="result: object">
+    <block>
+      <db.select table='film' result='result'>
+        <string name="order_by">"film_id"</string>
+      </db.select>
+    </block>
+  </function>
+
+  <function name="manage_film" returns="selected: object">
+    <block>
+      <set name="selected">
+        <object name="row" />
+        <string name="command">""</string>
+      </set>
+
+      <!-- options for <tableselect> -->
+
+      <object name="tsoptions">
+        <object name="tablecommands">
+          <!-- command name;icon;label;function called -->
+          <string>"new;add;add;add_film"</string>
+          <string>"refresh;refresh;refresh;__reload__"</string>
+        </object>
+
+        <function name="query">query_film</function>
+
+        <!-- entity name in dbresult -->
+        <string name="entity">"film"</string>
+        <!-- selected : row and command selected -->
+        <object name="selected">selected</object>
+        <!-- expand is true by default
+          commands buttons appear on a new row by clicking on + sign
+        -->
+        <boolean name="expand">false</boolean>
+        <!-- commands applicable to a row -->
+        <object name="commands">
+          <!-- name;icon;label;function called;__reload__
+            edit_film function called to process edit locally
+            delete has no function specified so the select_film function returns
+          -->
+          <string>"edit;edit;edit;edit_film"</string>
+          <string>"delete;delete_outline;delete;delete_film;__reload__"</string>
+        </object>
+        <!-- columns of the table -->
+        <object name="columns">
+          <!-- field name;column label;component type-->
+          <string>"film_id;ID"</string>
+          <string>"image_uri;Photo;qimg"</string>
+          <string>"title;Title"</string>
+          <string>"release_year;Release Year;"</string>
+        </object>
+      </object>
+
+      <form name="form_select" title="films">
+        <tableview model="tsoptions" title="films" template="expand"/>
+      </form>
+
+      <showform>
+        <form>form_select</form>
+      </showform>
+
+    </block>
+  </function>
+
+  <!--
+    function edit_film
+    parameter row
+    display a dialog to edit and save an film
+  -->
+
+  <function name="edit_film">
+    <object name="film"/>
+    <block>
+
+      <function name="add_film_actor">
+        <block>
+          <object name="actor_selected"/>
+          <call function="actor_select.select_actor" returns="actor_selected"/>
+          <if>
+            <condition>actor_selected.command == 'select'</condition>
+            <then>
+              <object name="temp"/>
+              <db.insert table="film_actor" returning_into="temp">
+                <object name="film_actor">
+                  <number name="film_id">film.film_id</number>
+                  <number name="actor_id">actor_selected.row.actor_id</number>
+                </object>
+              </db.insert>
+
+              <!-- <alert>
+                <message>"actor added "+actor_selected.row.first_name+ " " + actor_selected.row.last_name</message>
+              </alert> -->
+            </then>
+          </if>
+        </block>
+      </function>
+
+      <function name="edit_film_actor">
+        <object name="film_actor"/>
+        <block>
+          <object name="result_actor"/>
+          <db.select table="actor" result="result_actor">
+            <string name="where">"actor_id="+film_actor.actor_id</string>
+          </db.select>
+          <call function="actor_select.edit_actor">
+            <object name="actor">result_actor.actor.at(0)</object>
+          </call>
+        </block>
+      </function>
+
+      <function name="delete_film_actor">
+        <object name="row"/>
+        <block>
+          <if>
+            <condition>confirm('Do you want to remove actor '+row.actor_id+' '+row.first_name+' '+row.last_name+' from this film casting ?', 'OUI') == true</condition>
+            <then>
+              <alert>
+                <message>"Suppression confirmée"</message>
+              </alert>
+              <db.delete table="film_actor">
+                <object>row</object>
+              </db.delete>
+            </then>
+          </if>
+        </block>
+      </function>
+
+      <!-- copy from film to temp -->
+      <object name="temp">
+        film.copy()
+      </object>
+
+      <object name="actor_selected"/>
+
+      <function name="query_film_actors" returns="result: object">
+        <block>
+          <db.runquery name="actors_by_film" result="result">
+            <number name="film_id">film.film_id</number>
+          </db.runquery>
+        </block>
+      </function>
+
+      <object name="film_actors_tsoptions">
+        <object name="tablecommands">
+          <string>"new;add;add actor;add_film_actor"</string>
+        </object>
+        <function name="query">query_film_actors</function>
+        <string name="entity">"resultset"</string>
+        <object name="selected">actor_selected</object>
+
+        <object name="commands">
+          <string>"edit;edit;edit;edit_film_actor;"</string>
+          <string>"delete;delete_outline;delete;delete_film_actor;__reload__"</string>
+        </object>
+        <object name="columns">
+          <string>"image_uri;Photo;qimg"</string>
+          <string>"first_name;First Name;"</string>
+          <string>"last_name;Last Name;"</string>
+        </object>
+      </object>
+
+      <dialog name="dialog_film" card="" transition_show="slide-down" transition_hide="slide-up">
+        <cardsection>
+          <qimg model="temp.image_uri" label="Image URI">
+            <string name="table_name">"film"</string>
+            <string name="field_name">"image"</string>
+            <object>temp</object>
+          </qimg>
+        </cardsection>
+        <cardsection>
+          <input model="temp.film_id" label="ID" readonly=""/>
+          <input model="temp.title" label="Title" mandatory="enter the title of the film"/>
+          <input model="temp.description" label="Description" mandatory="enter a description of the film" type="textarea" autogrow=""/>
+          <input model="temp.release_year" label="Release Year" type="number"/>
+          <input model="temp.length" label="Length in minutes" type="number"/>
+        </cardsection>
+        <cardsection>
+          <string name="visible">"temp.film_id !== undefined"</string>
+          <tableview model="film_actors_tsoptions" title="Actors" template="expand"/>
+        </cardsection>
+
+        <cardactions>
+          <button label="Close" icon="cancel" closeform="">
+            <function name="onclick">
+              <block>
+                <closedialog/>
+              </block>
+            </function>
+          </button>
+          <button label="Save" icon="save" validate_dialog="" save="">
+            <string name="label" literal="">
+              if(temp.film_id !== undefined, "UPDATE", "ADD")
+            </string>
+            <function name="onclick">
+              <block>
+                <loop>
+                  <if>
+                    <condition>temp.film_id !== undefined</condition>
+                    <then>
+                      <db.update table="film">
+                        <object>temp</object>
+                      </db.update>
+                      <closedialog/>
+                    </then>
+                    <else>
+                      <object name="temp2"/>
+                      <db.insert table="film" returning_into="temp2">
+                        <object>temp</object>
+                      </db.insert>
+                      <set name="temp.film_id">temp2.film_id</set>
+
+                    </else>
+                  </if>
+
+                  <!-- copy from temp to film  -->
+                  <set name="film">film.setValuesFrom(temp)</set>
+
+                  <break/>
+                </loop>
+
+              </block>
+            </function>
+          </button>
+        </cardactions>
+      </dialog>
+
+
+      <showdialog>
+        <dialog>dialog_film</dialog>
+      </showdialog>
+
+    </block>
+  </function>
+
+  <function name="add_film">
+    <block>
+      <object name="new">
+    newDBRow("film")
+      </object>
+      <call function="edit_film">
+        <object name="film">new</object>
+      </call>
+    </block>
+  </function>
+
+  <function name="delete_film">
+    <object name="film"/>
+    <block>
+      <object name="result_film_actor"/>
+      <db.select table="film_actor" result="result_film_actor">
+        <string name="where">"film_id="+film.film_id</string>
+      </db.select>
+      <if>
+        <condition>result_film_actor.resultset.length() > 0</condition>
+        <then>
+          <alert>
+            <message>"Remove the casting of "+ result_film_actor.resultset.length()
+              + " actors before being able to delete the film"</message>
+          </alert>
+        </then>
+        <else>
+          <if>
+            <condition>confirm('Do you want to delete film '
+              +film.film_id+' '+film.title+' '+film.release_year+' ?') == true</condition>
+            <then>
+              <db.delete table="film">
+                <object>film</object>
+              </db.delete>
+            </then>
+          </if>
+        </else>
+      </if>
+
+    </block>
+  </function>
+
+  <!-- 
+    function __command__
+  -->
+  <function name="__command__">
+    <string name="command"/>
+    <block>
+      <print>"function film.__command__ parameter command = " + command</print>
+      <if>
+        <condition>command == 'actor' </condition>
+        <then>
+          <print>"command == actor"</print>
+          <call object="actor_select" method="manage_actor"/>
+        </then>
+        <else>
+          <call function="manage_film"/>
+        </else>
+      </if>
+    </block>
+  </function>
+
+
+</module>

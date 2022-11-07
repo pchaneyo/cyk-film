@@ -1,0 +1,77 @@
+<?xml-model href="https://www.cyklang.net/schema/cyklang.xsd"?>
+<module>
+
+  <!--
+    <db.table> creates or alters the table in Postgres DB
+  -->
+
+  <db.table  name="actor"  description="Actor table" >
+    <number name="actor_id" type="int" primary="" generated='by default'/>
+    <string name="first_name" type="varchar(255)" />
+    <string name="last_name" type="varchar(255)" />
+    <datetime name="last_update" type="timestamp with time zone" />
+    <string name="cyk_remark" type="varchar(255)" />
+    <string name="birthdate" type="date" />
+    <string name="image_url" type="varchar(2048)"/>
+    <string name="image" type="bytea"/>
+    <string name="image_filename"  type="varchar(2048)"/>
+    <number name="image_size" type="int"/>
+    <string name="image_mimetype" type="varchar(255)"/>
+    <string name="image_uri" type="varchar(2048)"/>
+  </db.table>
+
+  <db.table name="film">
+    <number name="film_id" type="int" primary="" generated='by default'/>
+    <string name="title" type="varchar(255)" />
+    <string name="description" type="text" />
+    <number name="release_year" type="int"/>
+    <number name="length" type="int" />
+    <number name="language_id" type="int"/>
+    <string name="image" type="bytea"/>
+    <string name="image_uri" type="varchar(2048)"/>
+  </db.table>
+
+  <db.table name="film_actor">
+    <number name="actor_id" type="int" primary=""/>
+    <number name="film_id" type="int" primary=""/>
+    <number name="length" type="int"/>
+  </db.table>
+
+  <db.query name="actors_by_film">
+    <number name="film_id"/>
+    <string name="__fields__">"
+        film_id: number;
+        actor_id: number: key;
+        title: string;
+        image_uri: string;
+        first_name: string;
+        last_name: string
+        "
+    </string>
+    <string name="__sql__" literal="">
+        select film.film_id, title, actor.actor_id actor_id,
+actor.image_uri,
+first_name, last_name
+from film_actor join film on film.film_id = film_actor.film_id
+join actor on actor.actor_id = film_actor.actor_id
+where film_actor.film_id = {{ film_id }}
+    </string>
+  </db.query>
+
+  <db.query name="films_by_actor">
+    <number name="actor_id"/>
+    <string name="__fields__">"
+      film_id: number: key;
+      title: string;
+      image_uri: string
+  "
+    </string>
+    <string name="__sql__" literal="">
+      select film.film_id, title, image_uri
+      from film_actor join film on film.film_id = film_actor.film_id
+      where film_actor.actor_id = {{ actor_id }}
+    </string>
+  </db.query>
+
+  <print>"Module db_init has been executed"</print>
+</module>
