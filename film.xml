@@ -73,9 +73,9 @@
         </object>
         <!-- columns of the table -->
         <object name="columns">
-          <!-- field name;column label;component type-->
+          <!-- field name;column label;component type;width in pixels-->
           <string>"film_id;ID"</string>
-          <string>"image_uri;Photo;qimg"</string>
+          <string>"image_uri;Photo;qimg;200"</string>
           <string>"title;Title"</string>
           <string>"release_year;Release Year;"</string>
         </object>
