@@ -228,7 +228,7 @@
           <input model="temp.actor_id" label="ID" readonly=""/>
           <input model="temp.first_name" label="First Name" mandatory="enter the first name of the actor"/>
           <input model="temp.last_name" label="Last Name" mandatory="enter the last name of the actor"/>
-          <input model="temp.birthdate" label="Birth Date" type="date"/>
+          <input model="temp.birthdate" label="Birthdate" type="date"/>
           <input model="temp.last_update" label="Last update Data" type="date"/>
           <!-- <input model="actor.last_update" label="Last update Time" type="time"/> -->
           <input model="temp.cyk_remark" label="Remark"/>
@@ -247,7 +247,7 @@
           </button>
           <button label="Save" icon="save" validate_dialog="" save="">
             <string name="label" literal="">
-              if(temp.actor_id !== undefined, "UPDATE", "ADD")
+              if(temp.actor_id !== undefined, format("update"), format("add"))
             </string>
             <function name="onclick">
               <block>

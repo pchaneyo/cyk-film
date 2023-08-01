@@ -81,8 +81,8 @@
         </object>
       </object>
 
-      <form name="form_select" title="films">
-        <tableview model="tsoptions" title="films" template="expand"/>
+      <form name="form_select" title="Films">
+        <tableview model="tsoptions" title="Films" template="expand"/>
       </form>
 
       <showform>
@@ -142,10 +142,15 @@
         <object name="row"/>
         <block>
           <if>
-            <condition>confirm('Do you want to remove actor '+row.actor_id+' '+row.first_name+' '+row.last_name+' from this film casting ?', 'OUI') == true</condition>
+            <condition>confirm(
+              format('Do you want to remove actor {1} {2} (id {0}) from this film casting ?',
+              row.actor_id,
+              row.first_name,
+              row.last_name), 
+              'OUI') == true</condition>
             <then>
               <alert>
-                <message>"Suppression confirmée"</message>
+                <message>format("Removal confirmed")</message>
               </alert>
               <db.delete table="film_actor">
                 <object>row</object>
@@ -202,7 +207,7 @@
           <input model="temp.title" label="Title" mandatory="enter the title of the film"/>
           <input model="temp.description" label="Description" mandatory="enter a description of the film" type="textarea" autogrow=""/>
           <input model="temp.release_year" label="Release Year" type="number"/>
-          <input model="temp.length" label="Length in minutes" type="number"/>
+          <input model="temp.length" label="Length (minutes)" type="number"/>
         </cardsection>
         <cardsection>
           <string name="visible">"temp.film_id !== undefined"</string>
@@ -284,14 +289,19 @@
         <condition>result_film_actor.resultset.length() > 0</condition>
         <then>
           <alert>
-            <message>"Remove the casting of "+ result_film_actor.resultset.length()
-              + " actors before being able to delete the film"</message>
+            <message>format("Remove the casting of {0} actors before being able to delete the film",
+              result_film_actor.resultset.length()
+            )
+            </message>
           </alert>
         </then>
         <else>
           <if>
-            <condition>confirm('Do you want to delete film '
-              +film.film_id+' '+film.title+' '+film.release_year+' ?') == true</condition>
+            <condition>confirm(format('Do you want to remove the film {1} (ID {0})  released in {2} ?'),
+              film.film_id,
+              film.title,
+              film.release_year
+              ) == true</condition>
             <then>
               <db.delete table="film">
                 <object>film</object>

@@ -1,0 +1,36 @@
+<?xml-model href="https://www.cyklang.net/schema/cyklang.xsd"?>
+<module>
+    <map name="fr">
+        <key>Films</key><value>Films</value>
+        <key>film table management</key><value>Gestion des Films</value>
+        <key>Actors</key><value>Acteurs</value>
+        <key>actor table management</key><value>Gestion des Acteurs</value>
+        
+        <key>Close</key><value>Fermer</value>
+        <key>Save</key><value>Sauvegarder</value>
+        <key>add</key><value>ajouter</value>
+        <key>add actor</key><value>ajouter acteur(trice)</value>
+        <key>refresh</key><value>rafraîchir</value>
+        <key>edit</key><value>modifier</value>
+        <key>delete</key><value>supprimer</value>
+        <key>ID</key><value>ID</value>
+        <key>Photo</key><value>Photo</value>
+        <key>Title</key><value>Titre</value>
+        <key>Description></key><value>Description</value>
+        <key>Release Year</key><value>Année de sortie</value>
+        <key>First Name</key><value>Prénom</value>
+        <key>Last Name</key><value>Nom</value>
+        <key>Image URI</key><value>Lien Image</value>
+        <key>Birthdate</key><value>Né(e) le</value>
+        <key>Length (minutes)</key><value>Durée (minutes)</value>
+
+        <key>Do you want to remove actor {1} {2} (id {0}) from this film casting ?</key>
+        <value>Voulez-vous retirer l'acteur(trice) {1} {2} (id {0}) de la distribution de ce film ?</value>
+        <key>Removal confirmed</key><value>Suppression confirmée</value>
+        <key>Remove the casting of {0} actors before being able to delete the film</key>
+        <value>Retirer les acteurs(trices) de la distribution avant de supprimer le film ({0} acteur(s) à retirer</value>
+        <key>Do you want to remove the film {1} (ID {0})  released in {2} ?</key>
+        <value>Supprimer le film {1} (ID {0}) sorti en {2} ?</value>
+
+    </map>
+</module>

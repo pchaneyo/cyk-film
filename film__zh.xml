@@ -1,0 +1,38 @@
+<?xml-model href="https://www.cyklang.net/schema/cyklang.xsd"?>
+<module>
+    <map name="zh">
+        <key>Films</key><value>电影</value>
+        <key>film table management</key><value>电影管理</value>
+        <key>Actors</key><value>演员</value>
+        <key>actor table management</key><value>演员管理</value>
+        
+        <key>Close</key><value>关闭</value>
+        <key>update</key><value>更新</value>
+        <key>Save</key><value>保存</value>
+        <key>add</key><value>添加</value>
+        <key>add actor</key><value>添加演员</value>
+        <key>add film</key><value>添加电影</value>
+        <key>refresh</key><value>刷新</value>
+        <key>edit</key><value>编辑</value>
+        <key>delete</key><value>消除</value>
+        <key>ID</key><value>标识符</value>
+        <key>Photo</key><value>照片</value>
+        <key>Title</key><value>标题</value>
+        <key>Description</key><value>描述</value>
+        <key>Release Year</key><value>发行年份</value>
+        <key>First Name</key><value>名</value>
+        <key>Last Name</key><value>姓</value>
+        <key>Image URI</key><value>网址</value>
+        <key>Birthdate</key><value>出生日期</value>
+        <key>Length (minutes)</key><value>长度 (分钟)</value>
+
+        <key>Do you want to remove actor {1} {2} (id {0}) from this film casting ?</key>
+        <value>这部电影消除 {2} {1} (标识符 {0}) 演员?</value>
+        <key>Removal confirmed</key><value>确认消除</value>
+        <key>Remove the casting of {0} actors before being able to delete the film</key>
+        <value>消除这部电影之前首先消除电影演员 ({0} 个演员)</value>
+        <key>Do you want to remove the film {1} (ID {0})  released in {2} ?</key>
+        <value>消除这部电影 : {1} ( 标识符 {0}) {2} 发行 ?</value>
+
+    </map>
+</module>
