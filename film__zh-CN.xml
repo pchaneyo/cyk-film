@@ -1,6 +1,6 @@
 <?xml-model href="https://www.cyklang.net/schema/cyklang.xsd"?>
 <module>
-    <map name="zh">
+    <map name="zh-CN">
         <key>Films</key><value>电影</value>
         <key>film table management</key><value>电影管理</value>
         <key>Actors</key><value>演员</value>
@@ -12,6 +12,7 @@
         <key>add</key><value>添加</value>
         <key>add actor</key><value>添加演员</value>
         <key>add film</key><value>添加电影</value>
+        <key>add film</key><value>添加电影</value>
         <key>refresh</key><value>刷新</value>
         <key>edit</key><value>编辑</value>
         <key>delete</key><value>消除</value>
@@ -22,8 +23,10 @@
         <key>Release Year</key><value>发行年份</value>
         <key>First Name</key><value>名</value>
         <key>Last Name</key><value>姓</value>
-        <key>Image URI</key><value>网址</value>
+        <key>Image URI</key><value>图片网址</value>
         <key>Birthdate</key><value>出生日期</value>
+        <key>Last Update On</key><value>最后更新于</value>
+        <key>Remark</key><value>评论</value>
         <key>Length (minutes)</key><value>长度 (分钟)</value>
 
         <key>Do you want to remove actor {1} {2} (id {0}) from this film casting ?</key>

@@ -10,6 +10,7 @@
         <key>Save</key><value>Sauvegarder</value>
         <key>add</key><value>ajouter</value>
         <key>add actor</key><value>ajouter acteur(trice)</value>
+        <key>add film</key><value>ajouter film</value>
         <key>refresh</key><value>rafraîchir</value>
         <key>edit</key><value>modifier</value>
         <key>delete</key><value>supprimer</value>
@@ -22,6 +23,8 @@
         <key>Last Name</key><value>Nom</value>
         <key>Image URI</key><value>Lien Image</value>
         <key>Birthdate</key><value>Né(e) le</value>
+        <key>Last Update On</key><value>Mis à jour le</value>
+        <key>Remark</key><value>Remarques</value>
         <key>Length (minutes)</key><value>Durée (minutes)</value>
 
         <key>Do you want to remove actor {1} {2} (id {0}) from this film casting ?</key>

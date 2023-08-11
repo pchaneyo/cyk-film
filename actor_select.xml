@@ -229,7 +229,7 @@
           <input model="temp.first_name" label="First Name" mandatory="enter the first name of the actor"/>
           <input model="temp.last_name" label="Last Name" mandatory="enter the last name of the actor"/>
           <input model="temp.birthdate" label="Birthdate" type="date"/>
-          <input model="temp.last_update" label="Last update Data" type="date"/>
+          <input model="temp.last_update" label="Last Update On" type="date"/>
           <!-- <input model="actor.last_update" label="Last update Time" type="time"/> -->
           <input model="temp.cyk_remark" label="Remark"/>
         </cardsection>
