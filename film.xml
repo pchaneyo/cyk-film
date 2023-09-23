@@ -75,7 +75,7 @@
         <object name="columns">
           <!-- field name;column label;component type;width in pixels-->
           <string>"film_id;ID"</string>
-          <string>"image_uri;Photo;qimg;200"</string>
+          <string>"image_meta;Photo;qimg;200"</string>
           <string>"title;Title"</string>
           <string>"release_year;Release Year;"</string>
         </object>
@@ -188,7 +188,7 @@
           <string>"delete;delete_outline;delete;delete_film_actor;__reload__"</string>
         </object>
         <object name="columns">
-          <string>"image_uri;Photo;qimg"</string>
+          <string>"image_meta;Photo;qimg"</string>
           <string>"first_name;First Name;"</string>
           <string>"last_name;Last Name;"</string>
         </object>
@@ -196,10 +196,10 @@
 
       <dialog name="dialog_film" card="" transition_show="slide-down" transition_hide="slide-up">
         <cardsection>
-          <qimg model="temp.image_uri" label="Image URI">
+          <qimg model="temp.image_meta" label="Image">
             <string name="table_name">"film"</string>
             <string name="field_name">"image"</string>
-            <object>temp</object>
+            <number name="id">temp.film_id</number>
           </qimg>
         </cardsection>
         <cardsection>
