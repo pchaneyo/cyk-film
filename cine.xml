@@ -1,7 +1,7 @@
 <?xml-model href="https://www.cyklang.net/schema/cyklang.xsd"?>
 <module description="film module">
 
-  <module_object name="actor_select" module="actor_select"/>
+  <module_object name="actor_select" module="cine_actor"/>
 
   <!--
     constructor __init__
@@ -13,8 +13,8 @@
       <setmenu>
         <object>
           <!-- title;icon;caption;path -->
-          <string literal="">Films;movie;film table management;/run/film</string>
-          <string literal="">Actors;person;actor table management;/run/film/actor</string>
+          <string literal="">Films;movie;film table management;/run/cine</string>
+          <string literal="">Actors;person;actor table management;/run/cine/actor</string>
         </object>
       </setmenu>
 
