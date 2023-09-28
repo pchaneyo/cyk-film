@@ -1,12 +1,26 @@
 {
-  "name": "cyk-film",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "@cyklang/demo-cine",
+  "version": "0.1.0",
+  "description": "CykLang Demo - Actors and Films",
+  "main": "xml/cine_init.xml",
   "scripts": {
     "dev": "onchange *.xml -- cyk module u *.xml",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "files": [
+    "xml/*"
+  ],
+  "author": "CYK",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pchaneyo/cyk-film.git"
+  },
+  "keywords": [
+    "CykLang"
+  ],
+  "bugs": {
+    "url": "https://github.com/pchaneyo/cyk-film/issues"
+  },
+  "homepage": "https://github.com/pchaneyo/cyk-film#readme"
 }

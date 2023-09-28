@@ -71,4 +71,5 @@ where film_actor.film_id = {{ film_id }}
   </db.query>
 
   <print>"Module db_init has been executed"</print>
+  <alert><message>"Module cine_init has been executed"</message></alert>
 </module>
