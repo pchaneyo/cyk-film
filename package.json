@@ -1,14 +1,15 @@
 {
   "name": "@cyklang/demo-cine",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "CykLang Demo - Actors and Films",
   "main": "xml/cine_init.xml",
   "scripts": {
+    "postinstall": "npx cyk install @cyklang/demo-cine",
     "dev": "onchange *.xml -- cyk module u *.xml",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
-    "xml/*"
+    "module/*"
   ],
   "author": "CYK",
   "license": "ISC",
