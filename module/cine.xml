@@ -169,9 +169,31 @@
 
       <function name="query_film_actors" returns="result: object">
         <block>
-          <db.runquery name="actors_by_film" result="result">
+          <query name="actors_by_film">
+            <object name="params">
+              <number name="film_id"/>
+            </object>
+            <string name="fields">"
+                film_id: number;
+                actor_id: number: key;
+                title: string;
+                image_meta: object;
+                first_name: string;
+                last_name: string
+                "
+            </string>
+            <string name="sql" literal="">
+                select film.film_id, title, actor.actor_id actor_id,
+        actor.image_meta,
+        first_name, last_name
+        from film_actor join film on film.film_id = film_actor.film_id
+        join actor on actor.actor_id = film_actor.actor_id
+        where film_actor.film_id = {{ film_id }}
+            </string>
+          </query>
+          <runquery name="actors_by_film" result="result">
             <number name="film_id">film.film_id</number>
-          </db.runquery>
+          </runquery>
         </block>
       </function>
 

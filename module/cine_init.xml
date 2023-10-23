@@ -29,46 +29,11 @@
   </db.table>
 
   <db.table name="film_actor">
-    <number name="actor_id" type="int" primary=""/>
-    <number name="film_id" type="int" primary=""/>
+    <number name="film_actor_id" type="int" primary="" generated="by default"/>
+    <number name="actor_id" type="int"/>
+    <number name="film_id" type="int"/>
     <number name="length" type="int"/>
   </db.table>
-
-  <db.query name="actors_by_film">
-    <number name="film_id"/>
-    <string name="__fields__">"
-        film_id: number;
-        actor_id: number: key;
-        title: string;
-        image_meta: object;
-        first_name: string;
-        last_name: string
-        "
-    </string>
-    <string name="__sql__" literal="">
-        select film.film_id, title, actor.actor_id actor_id,
-actor.image_meta,
-first_name, last_name
-from film_actor join film on film.film_id = film_actor.film_id
-join actor on actor.actor_id = film_actor.actor_id
-where film_actor.film_id = {{ film_id }}
-    </string>
-  </db.query>
-
-  <db.query name="films_by_actor">
-    <number name="actor_id"/>
-    <string name="__fields__">"
-      film_id: number: key;
-      title: string;
-      image_meta: object
-  "
-    </string>
-    <string name="__sql__" literal="">
-      select film.film_id, title, image_meta
-      from film_actor join film on film.film_id = film_actor.film_id
-      where film_actor.actor_id = {{ actor_id }}
-    </string>
-  </db.query>
 
   <print>"Module db_init has been executed"</print>
   <alert><message>"Module cine_init has been executed"</message></alert>

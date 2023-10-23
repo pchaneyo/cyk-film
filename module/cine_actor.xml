@@ -47,7 +47,7 @@
       <object name="tsoptions">
         <object name="tablecommands">
           <!-- command name;icon;label;function called -->
-          <string>"new;add;add;add_actor"</string>
+          <string>"new;add;add;add_actor;__reload__"</string>
           <string>"cancel;close;cancel;"</string>
           <string>"refresh;refresh;refresh;__reload__"</string>
         </object>
@@ -174,9 +174,26 @@
 
       <function name="query_film_actor" returns="result: object">
         <block>
-          <db.runquery name='films_by_actor' result='result'>
-            <number name="actor_id">actor.actor_id</number>
-          </db.runquery>
+          <query name="films_by_actor">
+            <object name="params">
+              <number name="actor_id"/>
+            </object>
+
+            <string name="fields">"
+              film_id: number: key;
+              title: string;
+              image_meta: object
+          "
+            </string>
+            <string name="sql" literal="">
+              select film.film_id, title, image_meta
+              from film_actor join film on film.film_id = film_actor.film_id
+              where film_actor.actor_id = {{ actor_id }}
+            </string>
+          </query>
+          <runquery name='films_by_actor' result='result'>
+            <number name="actor_id">actor.actor_id || 0</number>
+          </runquery>
         </block>
       </function>
 

@@ -4,7 +4,7 @@
   "description": "CykLang Demo - Actors and Films",
   "main": "xml/cine_init.xml",
   "scripts": {
-    "dev": "onchange *.xml -- cyk module u *.xml",
+    "dev": "onchange module/*.xml -- cyk module u module/*.xml",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/pchaneyo/cyk-film/issues"
   },
-  "homepage": "https://github.com/pchaneyo/cyk-film#readme"
+  "homepage": "https://github.com/pchaneyo/cyk-film#readme",
+  "devDependencies": {
+    "onchange": "^7.1.0"
+  }
 }
