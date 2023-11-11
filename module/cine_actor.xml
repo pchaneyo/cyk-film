@@ -179,12 +179,13 @@
               <number name="actor_id"/>
             </object>
 
-            <string name="fields">"
+            <!-- <string name="fields">"
               film_id: number: key;
               title: string;
               image_meta: object
-          "
-            </string>
+          " 
+            </string> -->
+            <string name="key">"film_id"</string>
             <string name="sql" literal="">
               select film.film_id, title, image_meta
               from film_actor join film on film.film_id = film_actor.film_id

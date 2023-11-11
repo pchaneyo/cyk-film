@@ -173,15 +173,7 @@
             <object name="params">
               <number name="film_id"/>
             </object>
-            <string name="fields">"
-                film_id: number;
-                actor_id: number: key;
-                title: string;
-                image_meta: object;
-                first_name: string;
-                last_name: string
-                "
-            </string>
+            <string name="key">"actor_id"</string>
             <string name="sql" literal="">
                 select film.film_id, title, actor.actor_id actor_id,
         actor.image_meta,
