@@ -6,33 +6,33 @@
   -->
 
   <db.table  name="actor"  description="Actor table" >
-    <number name="actor_id" type="int" primary="" generated='by default'/>
-    <string name="first_name" type="varchar(255)" />
-    <string name="last_name" type="varchar(255)" />
-    <datetime name="last_update" type="timestamp with time zone" />
-    <string name="cyk_remark" type="varchar(255)" />
-    <string name="birthdate" type="date" />
-    <string name="image" type="bytea"/>
-    <object name="image_meta" type="jsonb"/>
+    <number name="actor_id" dbtype="int" primary="" generated='by default'/>
+    <string name="first_name" dbtype="varchar(255)" />
+    <string name="last_name" dbtype="varchar(255)" />
+    <datetime name="last_update" dbtype="timestamp with time zone" />
+    <string name="cyk_remark" dbtype="varchar(255)" />
+    <string name="birthdate" dbtype="date" />
+    <string name="image" dbtype="bytea"/>
+    <object name="image_meta" dbtype="jsonb"/>
 
   </db.table>
 
   <db.table name="film">
-    <number name="film_id" type="int" primary="" generated='by default'/>
-    <string name="title" type="varchar(255)" />
-    <string name="description" type="text" />
-    <number name="release_year" type="int"/>
-    <number name="length" type="int" />
-    <number name="language_id" type="int"/>
-    <string name="image" type="bytea"/>
-    <object name="image_meta" type="jsonb"/>
+    <number name="film_id" dbtype="int" primary="" generated='by default'/>
+    <string name="title" dbtype="varchar(255)" />
+    <string name="description" dbtype="text" />
+    <number name="release_year" dbtype="int"/>
+    <number name="length" dbtype="int" />
+    <number name="language_id" dbtype="int"/>
+    <string name="image" dbtype="bytea"/>
+    <object name="image_meta" dbtype="jsonb"/>
   </db.table>
 
   <db.table name="film_actor">
-    <number name="film_actor_id" type="int" primary="" generated="by default"/>
-    <number name="actor_id" type="int"/>
-    <number name="film_id" type="int"/>
-    <number name="length" type="int"/>
+    <number name="film_actor_id" dbtype="int" primary="" generated="by default"/>
+    <number name="actor_id" dbtype="int"/>
+    <number name="film_id" dbtype="int"/>
+    <number name="length" dbtype="int"/>
   </db.table>
 
   <print>"Module db_init has been executed"</print>
