@@ -6,32 +6,31 @@
   -->
 
   <db.table  name="actor"  description="Actor table" >
-    <number name="actor_id" dbtype="int" primary="" generated='by default'/>
-    <string name="first_name" dbtype="varchar(255)" />
-    <string name="last_name" dbtype="varchar(255)" />
-    <datetime name="last_update" dbtype="timestamp with time zone" />
-    <string name="cyk_remark" dbtype="varchar(255)" />
-    <string name="birthdate" dbtype="date" />
+    <number name="actor_id" dbtype="int" primary="" generated='by default' label="Actor ID"/>
+    <string name="first_name" dbtype="varchar(255)" label="First Name"/>
+    <string name="last_name" dbtype="varchar(255)" label="Last Name"/>
+    <datetime name="last_update" dbtype="timestamp with time zone" label="Updated"/>
+    <string name="cyk_remark" dbtype="varchar(255)" label="Remark"/>
+    <string name="birthdate" dbtype="date" label="Birthdate"/>
     <string name="image" dbtype="bytea"/>
-    <object name="image_meta" dbtype="jsonb"/>
+    <object name="image_meta" dbtype="jsonb" label="Photo" component="qimg"/>
 
   </db.table>
 
   <db.table name="film">
-    <number name="film_id" dbtype="int" primary="" generated='by default'/>
-    <string name="title" dbtype="varchar(255)" />
-    <string name="description" dbtype="text" />
-    <number name="release_year" dbtype="int"/>
-    <number name="length" dbtype="int" />
-    <number name="language_id" dbtype="int"/>
+    <number name="film_id" dbtype="int" primary="" generated='by default' label="Film ID"/>
+    <string name="title" dbtype="varchar(255)" label="Title"/>
+    <string name="description" dbtype="text" label="Description"/>
+    <number name="release_year" dbtype="int" label="Released"/>
+    <number name="length" dbtype="int" label="Duration(mn)"/>
+    <number name="language_id" dbtype="int" label="Language"/>
     <string name="image" dbtype="bytea"/>
-    <object name="image_meta" dbtype="jsonb"/>
+    <object name="image_meta" dbtype="jsonb" label="Image" component="qimg"/>
   </db.table>
 
   <db.table name="film_actor">
-    <number name="film_actor_id" dbtype="int" primary="" generated="by default"/>
-    <number name="actor_id" dbtype="int"/>
-    <number name="film_id" dbtype="int"/>
+    <number name="actor_id" dbtype="int" primary=""/>
+    <number name="film_id" dbtype="int" primary=""/>
     <number name="length" dbtype="int"/>
   </db.table>
 

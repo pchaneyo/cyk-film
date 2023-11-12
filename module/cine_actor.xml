@@ -14,6 +14,7 @@
   <function name="query_actor" returns="result: object">
     <block>
       <db.select table='actor' result='result'>
+        <string name="fields">"image_meta,first_name,last_name,birthdate,actor_id"</string>
         <string name="order_by">"actor_id"</string>
       </db.select>
     </block>
@@ -57,10 +58,6 @@
         <string name="entity">"actor"</string>
         <!-- selected : row and command selected -->
         <object name="selected">selected</object>
-        <!-- expand is true by default
-              commands buttons appear on a new row by clicking on + sign
-            -->
-        <boolean name="expand">false</boolean>
         <!-- commands applicable to a row -->
         <object name="commands">
           <!-- name;icon;label;function called
@@ -72,17 +69,15 @@
           <string>"delete;delete_outline;delete;delete_actor;__reload__"</string>
         </object>
         <!-- columns of the table -->
-        <object name="columns">
-          <!-- field name;column label;component type-->
-
+         <!-- field name;column label;component type-->
+        <!-- <object name="columns">
           <string>"image_meta;Photo;qimg"</string>
           <string>"Name:first_name+' '+last_name;Computed"</string>
           <string>"first_name;First Name"</string>
           <string>"last_name;Last Name;"</string>
           <string>"birthdate;Birthdate"</string>
           <string>"actor_id;ID"</string>
-
-        </object>
+        </object> -->
       </object>
 
       <dialog name="form_select" title="Actor selection" transition_show="slide-down" transition_hide="slide-up">
@@ -119,10 +114,6 @@
         <string name="entity">"actor"</string>
         <!-- selected : row and command selected -->
         <object name="selected">selected</object>
-        <!-- expand is true by default
-                commands buttons appear on a new row by clicking on + sign
-              -->
-        <boolean name="expand">false</boolean>
         <!-- commands applicable to a row -->
         <object name="commands">
           <!-- name;icon;label;function called
@@ -133,15 +124,8 @@
           <string>"delete;delete_outline;delete;delete_actor;__reload__"</string>
         </object>
         <!-- columns of the table -->
-        <object name="columns">
           <!-- field name;column label;component type-->
-          <string>"actor_id;ID"</string>
-          <string>"image_meta;Photo;qimg"</string>
-          <string>"first_name;First Name"</string>
-          <string>"last_name;Last Name;"</string>
-          <string>"birthdate;Birthdate"</string>
-          <string>"computed:first_name+' '+last_name;Computed"</string>
-        </object>
+
       </object>
 
       <form name="form_select" title="Actors">
@@ -220,7 +204,6 @@
           <string>"new;add;add film;add_film_actor"</string>
         </object>
         <function name="query">query_film_actor</function>
-        <string name="entity">"resultset"</string>
         <object name="selected">film_selected</object>
 
         <object name="commands">

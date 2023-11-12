@@ -30,9 +30,16 @@
 
   <function name="query_film" returns="result: object">
     <block>
-      <db.select table='film' result='result'>
+      <!-- <db.select table='film' result='result'>
+        <string name="fields">"image_meta,title,release_year,film_id"</string>
         <string name="order_by">"film_id"</string>
-      </db.select>
+      </db.select> -->
+      <query name="q_film">
+        <string name="sql" literal="">
+          select release_year,image_meta,title,film_id from film order by film_id
+        </string>
+      </query>
+      <runquery name="q_film" result="result"></runquery>
     </block>
   </function>
 
@@ -55,13 +62,8 @@
         <function name="query">query_film</function>
 
         <!-- entity name in dbresult -->
-        <string name="entity">"film"</string>
         <!-- selected : row and command selected -->
         <object name="selected">selected</object>
-        <!-- expand is true by default
-          commands buttons appear on a new row by clicking on + sign
-        -->
-        <boolean name="expand">false</boolean>
         <!-- commands applicable to a row -->
         <object name="commands">
           <!-- name;icon;label;function called;__reload__
@@ -72,13 +74,8 @@
           <string>"delete;delete_outline;delete;delete_film;__reload__"</string>
         </object>
         <!-- columns of the table -->
-        <object name="columns">
-          <!-- field name;column label;component type;width in pixels-->
-          <string>"film_id;ID"</string>
-          <string>"image_meta;Photo;qimg;200"</string>
-          <string>"title;Title"</string>
-          <string>"release_year;Release Year;"</string>
-        </object>
+        <!-- field name;column label;component type;width in pixels-->
+
       </object>
 
       <form name="form_select" title="Films">
@@ -201,11 +198,11 @@
           <string>"edit;edit;edit;edit_film_actor;"</string>
           <string>"delete;delete_outline;delete;delete_film_actor;__reload__"</string>
         </object>
-        <object name="columns">
+        <!-- <object name="columns">
           <string>"image_meta;Photo;qimg"</string>
           <string>"first_name;First Name;"</string>
           <string>"last_name;Last Name;"</string>
-        </object>
+        </object> -->
       </object>
 
       <dialog name="dialog_film" card="" transition_show="slide-down" transition_hide="slide-up">
