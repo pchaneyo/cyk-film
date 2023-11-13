@@ -198,11 +198,6 @@
           <string>"edit;edit;edit;edit_film_actor;"</string>
           <string>"delete;delete_outline;delete;delete_film_actor;__reload__"</string>
         </object>
-        <!-- <object name="columns">
-          <string>"image_meta;Photo;qimg"</string>
-          <string>"first_name;First Name;"</string>
-          <string>"last_name;Last Name;"</string>
-        </object> -->
       </object>
 
       <dialog name="dialog_film" card="" transition_show="slide-down" transition_hide="slide-up">

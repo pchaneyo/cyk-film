@@ -69,15 +69,6 @@
           <string>"delete;delete_outline;delete;delete_actor;__reload__"</string>
         </object>
         <!-- columns of the table -->
-         <!-- field name;column label;component type-->
-        <!-- <object name="columns">
-          <string>"image_meta;Photo;qimg"</string>
-          <string>"Name:first_name+' '+last_name;Computed"</string>
-          <string>"first_name;First Name"</string>
-          <string>"last_name;Last Name;"</string>
-          <string>"birthdate;Birthdate"</string>
-          <string>"actor_id;ID"</string>
-        </object> -->
       </object>
 
       <dialog name="form_select" title="Actor selection" transition_show="slide-down" transition_hide="slide-up">
@@ -210,11 +201,11 @@
           <string>"edit;edit;edit;edit_film_actor;__reload__"</string>
           <string>"delete;delete_outline;delete;delete_film_actor;__reload__"</string>
         </object>
-        <object name="columns">
-          <string>"image_meta;Photo;qimg"</string>
-          <string>"title;Title;"</string>
-          <string>"film_id;Film ID;"</string>
-        </object>
+        <type name="columns">
+          <object name="image_meta" label="Photo" component="qimg"/>
+          <string name="title" label="Title"/>
+          <string name="film_id" label="Film ID"/>
+        </type>
       </object>
 
       <dialog name="dialog_actor" card="" transition_show="slide-down" transition_hide="slide-up">
