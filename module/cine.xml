@@ -11,11 +11,10 @@
     <block>
       <!-- setMenu-->
       <setmenu>
-        <object>
-          <!-- title;icon;caption;path -->
-          <string literal="">Films;movie;film table management;/run/cine</string>
-          <string literal="">Actors;person;actor table management;/run/cine/actor</string>
-        </object>
+        <menu_object>
+          <command label="Films" icon="movie" description="table management" pathname="/run/cine"/>
+          <command label="Actors" icon="person" description="actor table management" pathname="/run/cine/actor"/>
+        </menu_object>
       </setmenu>
 
     </block>
@@ -52,31 +51,31 @@
 
       <!-- options for <tableselect> -->
 
-      <object name="tsoptions">
-        <object name="tablecommands">
-          <!-- command name;icon;label;function called -->
-          <string>"new;add;add;add_film"</string>
-          <string>"refresh;refresh;refresh;__reload__"</string>
-        </object>
+      <table_model name="tsoptions">
+        <menu_object name="tablecommands">
+          <command name="new" icon="add" label="add" action="add_film"/>
+          <command name="refresh" icon="refresh" label="refresh" action="refresh"/>
+        </menu_object>
 
         <function name="query">query_film</function>
-
+ 
         <!-- entity name in dbresult -->
         <!-- selected : row and command selected -->
         <object name="selected">selected</object>
         <!-- commands applicable to a row -->
-        <object name="commands">
-          <!-- name;icon;label;function called;__reload__
+        <!-- name;icon;label;function called;__reload__
             edit_film function called to process edit locally
             delete has no function specified so the select_film function returns
           -->
-          <string>"edit;edit;edit;edit_film"</string>
-          <string>"delete;delete_outline;delete;delete_film;__reload__"</string>
-        </object>
+        <menu_object name="commands">
+          <command name="edit" label="edit" icon="edit" action="edit_film"/>
+          <command name="delete" label="delete" icon="delete_outline" action="delete_film"/>
+        </menu_object>
+
         <!-- columns of the table -->
         <!-- field name;column label;component type;width in pixels-->
 
-      </object>
+      </table_model>
 
       <form name="form_select" title="Films">
         <tableview model="tsoptions" title="Films" template="expand"/>
@@ -186,19 +185,22 @@
         </block>
       </function>
 
-      <object name="film_actors_tsoptions">
-        <object name="tablecommands">
-          <string>"new;add;add actor;add_film_actor"</string>
-        </object>
+      <table_model name="film_actors_tsoptions">
+        <menu_object name="tablecommands">
+          <command name="new" icon="add" label="add" action="add_film_actor"/>
+          <!-- <string>"new;add;add actor;add_film_actor"</string> -->
+        </menu_object>
         <function name="query">query_film_actors</function>
         <string name="entity">"resultset"</string>
         <object name="selected">actor_selected</object>
 
-        <object name="commands">
-          <string>"edit;edit;edit;edit_film_actor;"</string>
-          <string>"delete;delete_outline;delete;delete_film_actor;__reload__"</string>
-        </object>
-      </object>
+        <menu_object name="commands">
+          <command name="edit" icon="edit" label="edit" action="edit_film_actor"/>
+          <command name="delete" icon="delete" label="delete" action="delete_film_actor"/>
+          <!-- <string>"edit;edit;edit;edit_film_actor;"</string>
+          <string>"delete;delete_outline;delete;delete_film_actor;__reload__"</string> -->
+        </menu_object>
+      </table_model>
 
       <dialog name="dialog_film" card="" transition_show="slide-down" transition_hide="slide-up">
         <cardsection>
