@@ -35,10 +35,11 @@
       </db.select> -->
       <query name="q_film">
         <string name="sql" literal="">
-          select release_year,image_meta,title,film_id from film order by film_id
+          select release_year,image_meta,title,film_id,language_id,length, description, film__meta from film order by film_id
         </string>
       </query>
       <runquery name="q_film" result="result"></runquery>
+      <print>"query_film() result: " + string(result)</print>
     </block>
   </function>
 
@@ -54,7 +55,7 @@
       <table_model name="tsoptions">
         <menu_object name="tablecommands">
           <command name="new" icon="add" label="add" action="add_film"/>
-          <command name="refresh" icon="refresh" label="refresh" action="refresh"/>
+          <command name="refresh" icon="refresh" label="refresh" action="__reload__"/> 
         </menu_object>
 
         <function name="query">query_film</function>
@@ -94,7 +95,7 @@
     display a dialog to edit and save an film
   -->
 
-  <function name="edit_film">
+  <function name="edit_film" returns="reload: boolean">
     <object name="film"/>
     <block>
 
@@ -160,6 +161,8 @@
       <object name="temp">
         film.copy()
       </object>
+
+      <print>"edit_film: string(temp): " + string(temp)</print>
 
       <object name="actor_selected"/>
 
@@ -236,7 +239,11 @@
             </string>
             <function name="onclick">
               <block>
-                <loop>
+                <call object="temp" method="dbsave" returns="temp"/>
+                <set name="film">film.setValuesFrom(temp)</set>
+                <alert><message>"before  reload"</message></alert>
+                <set name="reload">true</set>
+                <!-- <loop>
                   <if>
                     <condition>temp.film_id !== undefined</condition>
                     <then>
@@ -255,11 +262,10 @@
                     </else>
                   </if>
 
-                  <!-- copy from temp to film  -->
                   <set name="film">film.setValuesFrom(temp)</set>
 
                   <break/>
-                </loop>
+                </loop> -->
 
               </block>
             </function>
