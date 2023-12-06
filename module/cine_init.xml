@@ -6,7 +6,8 @@
   -->
 
   <db.table  name="actor"  description="Actor table" >
-    <number name="actor_id" dbtype="int" primary="" generated='by default' label="Actor ID"/>
+    <number name="actor_id" dbtype="int" primary="" generated='by default' label="Actor ID" />
+    <string name="actor_name" computed="first_name + ' ' + last_name" label="Actor"/>
     <string name="first_name" dbtype="varchar(255)" label="First Name"/>
     <string name="last_name" dbtype="varchar(255)" label="Last Name"/>
     <datetime name="last_update" dbtype="timestamp with time zone" label="Updated"/>
@@ -32,6 +33,12 @@
     <number name="actor_id" dbtype="int" primary=""/>
     <number name="film_id" dbtype="int" primary=""/>
     <number name="length" dbtype="int"/>
+    <foreignkey parent="film" >
+      <string name="film_id">"film_id"</string>
+    </foreignkey>
+    <foreignkey parent="actor">
+      <string name="actor_id">"actor_id"</string>
+    </foreignkey>
   </db.table>
 
   <print>"Module db_init has been executed"</print>
