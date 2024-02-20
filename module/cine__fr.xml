@@ -31,7 +31,7 @@
         <value>Voulez-vous retirer l'acteur(trice) {1} {2} (id {0}) de la distribution de ce film ?</value>
         <key>Removal confirmed</key><value>Suppression confirmée</value>
         <key>Remove the casting of {0} actors before being able to delete the film</key>
-        <value>Retirer les acteurs(trices) de la distribution avant de supprimer le film ({0} acteur(s) à retirer</value>
+        <value>Retirer les acteurs(trices) de la distribution avant de supprimer le film ({0} acteur(s) à retirer)</value>
         <key>Do you want to remove the film {1} (ID {0})  released in {2} ?</key>
         <value>Supprimer le film {1} (ID {0}) sorti en {2} ?</value>
 
