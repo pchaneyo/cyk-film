@@ -210,7 +210,7 @@
           <qimg model="temp.image_meta" label="Image">
             <string name="table_name">"film"</string>
             <string name="field_name">"image"</string>
-            <number name="id">temp.film_id</number>
+            <string name="key">temp.film_id</string>
           </qimg>
         </cardsection>
         <cardsection>
@@ -220,10 +220,10 @@
           <input model="temp.release_year" label="Release Year" type="number"/>
           <input model="temp.length" label="Length (minutes)" type="number"/>
         </cardsection>
-        <cardsection>
-          <string name="visible">"temp.film_id !== undefined"</string>
+        <grid>
+          <boolean name="visible">"temp.film_id !== undefined"</boolean>
           <tableview model="film_actors_tsoptions" title="Actors" template="expand"/>
-        </cardsection>
+          </grid>
 
         <cardactions>
           <button label="Close" icon="cancel" closeform="">
@@ -234,7 +234,7 @@
             </function>
           </button>
           <button label="Save" icon="save" validate_dialog="" save="">
-            <string name="label" literal="">
+            <string name="label">
               if(temp.film_id !== undefined, "UPDATE", "ADD")
             </string>
             <function name="onclick">

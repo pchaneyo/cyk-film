@@ -57,8 +57,6 @@
         </menu_object>
         <!-- query function returns dbresult object -->
         <function name="query">query_actor</function>
-        <!-- entity name in dbresult -->
-        <string name="entity">"actor"</string>
         <!-- selected : row and command selected -->
         <object name="selected">selected</object>
         <!-- commands applicable to a row -->
@@ -103,14 +101,12 @@
         <menu_object name="tablecommands">
           <!-- command name;icon;label;function called -->
           <command name="new" icon="add" label="add" action="add_actor"/>
-          <command name="refresh" icon="refresh" label="refresh" />
+          <command name="refresh" icon="refresh" label="refresh" action="__reload__"/>
           <!-- <string>"new;add;add;add_actor"</string>
           <string>"refresh;refresh;refresh;__reload__"</string> -->
         </menu_object>
         <!-- query function returns dbresult object -->
         <function name="query">query_actor</function>
-        <!-- entity name in dbresult -->
-        <string name="entity">"actor"</string>
         <!-- selected : row and command selected -->
         <object name="selected">selected</object>
         <!-- commands applicable to a row -->
@@ -248,7 +244,7 @@
             </function>
           </button>
           <button label="Save" icon="save" validate_dialog="" save="">
-            <string name="label" literal="">
+            <string name="label">
               if(temp.actor_id !== undefined, format("update"), format("add"))
             </string>
             <function name="onclick">
