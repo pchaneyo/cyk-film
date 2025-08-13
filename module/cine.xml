@@ -311,11 +311,11 @@
         </then>
         <else>
           <if>
-            <condition>confirm(format('Do you want to remove the film {1} (ID {0})  released in {2} ?'),
+            <condition>confirm(format('Do you want to remove the film {1} (ID {0})  released in {2} ?',
               film.film_id,
               film.title,
               film.release_year
-              ) == true</condition>
+            )) == true</condition>
             <then>
               <db.delete table="film">
                 <object>film</object>
